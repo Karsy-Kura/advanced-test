@@ -10,4 +10,10 @@ class Contact extends Model
   use HasFactory;
 
   protected $guarded = ['id'];
+
+  public static function createNewContact($array)
+  {
+    Contact::create($array);
+    return;
+  }
 }

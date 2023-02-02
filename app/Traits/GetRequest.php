@@ -22,4 +22,9 @@ trait GetRequest
   {
     return $this->unsetTokenFromArray($request->query());
   }
+
+  private function getIdFromRequest(Request $request)
+  {
+    return $request->id;
+  }
 }
