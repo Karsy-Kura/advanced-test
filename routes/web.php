@@ -1,5 +1,7 @@
 <?php
 
+use App\Consts\ControllerConst;
+use App\Consts\RouteConst;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,20 +17,44 @@ use Illuminate\Support\Facades\Route;
 */
 
 // contact.
-Route::group(['prefix' => 'contact'], function () {
+Route::group([RouteConst::ROUTE_PREFIX => RouteConst::ROUTE_CONTACT], function () {
 
-  Route::get('/', [ContactController::class, 'index']);
-  Route::post('/', [ContactController::class, 'modify']);
+  Route::get(
+    RouteConst::ROUTE_ROOT,
+    [ContactController::class, ControllerConst::CTRL_FUNC_INDEX]
+  );
+  Route::post(
+    RouteConst::ROUTE_ROOT,
+    [ContactController::class, ControllerConst::CTRL_FUNC_MODIFY]
+  );
 
-  Route::post('confirm', [ContactController::class, 'confirm']);
-  Route::post('create', [ContactController::class, 'create']);
-  Route::get('close', [ContactController::class, 'close']);
+  Route::post(
+    RouteConst::ROUTE_CONFIRM,
+    [ContactController::class, ControllerConst::CTRL_FUNC_CONFIRM]
+  );
+  Route::post(
+    RouteConst::ROUTE_CREATE,
+    [ContactController::class, ControllerConst::CTRL_FUNC_CREATE]
+  );
+  Route::post(
+    RouteConst::ROUTE_CLOSE,
+    [ContactController::class, ControllerConst::CTRL_FUNC_CLOSE]
+  );
 
   // management.
-  Route::group(['prefix' => 'management'], function () {
-    
-    Route::get('/', [ContactController::class, 'manage']);
-    Route::get('search', [ContactController::class, 'search']);
-    Route::post('delete', [ContactController::class, 'delete']);
+  Route::group([RouteConst::ROUTE_PREFIX => RouteConst::ROUTE_MANAGEMENT], function () {
+
+    Route::get(
+      RouteConst::ROUTE_ROOT,
+      [ContactController::class, ControllerConst::CTRL_FUNC_MANAGE]
+    );
+    Route::get(
+      RouteConst::ROUTE_SEARCH,
+      [ContactController::class, ControllerConst::CTRL_FUNC_SEARCH]
+    );
+    Route::post(
+      RouteConst::ROUTE_DELETE,
+      [ContactController::class, ControllerConst::CTRL_FUNC_DELETE]
+    );
   });
 });

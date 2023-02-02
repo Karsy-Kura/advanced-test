@@ -2,7 +2,7 @@
 
 namespace App\Consts;
 
-class RouteConsts
+class RouteConst
 {
   // common.
   public const ROUTE_PREFIX = 'prefix';
