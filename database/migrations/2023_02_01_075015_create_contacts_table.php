@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Consts\ParamConst;
 
 class CreateContactsTable extends Migration
 {
@@ -15,13 +16,13 @@ class CreateContactsTable extends Migration
   {
     Schema::create('contacts', function (Blueprint $table) {
       $table->id();
-      $table->string('fullname', 255);
-      $table->tinyInteger('gender', false, true);
-      $table->string('email', 255);
-      $table->string('postcode', 8);
-      $table->string('address', 255);
-      $table->string('building_name', 255)->nullable();
-      $table->text('opinion');
+      $table->string(ParamConst::PARAM_FULLNAME, 255);
+      $table->tinyInteger(ParamConst::PARAM_GENDER, false, true);
+      $table->string(ParamConst::PARAM_EMAIL, 255);
+      $table->string(ParamConst::PARAM_POSTCODE, 8);
+      $table->string(ParamConst::PARAM_ADDRESS, 255);
+      $table->string(ParamConst::PARAM_BUILDINGNAME, 255)->nullable();
+      $table->text(ParamConst::PARAM_OPINION);
       $table->timestamps();
     });
   }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// contact.
+Route::group(['prefix' => 'contact'], function () {
+
+  Route::get('/', [ContactController::class, 'index']);
+  Route::post('/', [ContactController::class, 'modify']);
+
+  Route::post('confirm', [ContactController::class, 'confirm']);
+  Route::post('create', [ContactController::class, 'create']);
+  Route::get('close', [ContactController::class, 'close']);
+
+  // management.
+  Route::group(['prefix' => 'management'], function () {
+    
+    Route::get('/', [ContactController::class, 'manage']);
+    Route::get('search', [ContactController::class, 'search']);
+    Route::post('delete', [ContactController::class, 'delete']);
+  });
 });
