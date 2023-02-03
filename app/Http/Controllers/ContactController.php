@@ -55,12 +55,9 @@ class ContactController extends Controller
   // search contacts.
   public function search(Request $request)
   {
-    $form = $this->getRequestAll($request);
-
-    // TODO : ここにクエリ等を記載，できれば関数化してTraitに.
-    $contacts = null;
-    
-    return view(ViewConst::VIEW_MANAGEMENTS, [$form, $contacts]);
+    $condition = $this->getRequestAll($request);
+    $contacts = Contact::getContactsByCondition($condition);
+    return view(ViewConst::VIEW_MANAGEMENTS, [$condition, $contacts]);
   }
 
   // delete contact from table.

@@ -11,6 +11,10 @@ class ParamConst
 
   public const PARAM_UPDATEDAT = 'updated_at';
 
+  public const PARAM_FROM = 'from';
+
+  public const PARAM_TO = 'to';
+
   // contacts table.
   public const PARAM_ID = 'id';
   
