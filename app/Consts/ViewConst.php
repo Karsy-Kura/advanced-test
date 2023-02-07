@@ -11,7 +11,7 @@ class ViewConst
 
   public const VIEW_THANKS = 'thanks';
 
-  public const VIEW_MANAGEMENTS = 'managements';
+  public const VIEW_MANAGEMENT = 'management';
 
   public const VIEW_LAYOUTS = 'layouts';
 

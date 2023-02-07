@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
 
 class Contact extends Model
 {
   use HasFactory;
 
-  protected $guarded = [ ParamConst::PARAM_ID ];
+  protected $guarded = [ParamConst::PARAM_ID];
 
-  const PAGINATE_NUM = 5;
+  const PAGINATE_NUM = 10;
 
   public static function getContacts()
   {
@@ -29,6 +30,15 @@ class Contact extends Model
     return;
   }
 
+  public static function deleteAtId($id)
+  {
+    $contact = self::find($id);
+    if (!isNull($contact)) {
+      $contact->delete();
+    }
+    return;
+  }
+
   public static function getContactsByCondition($array)
   {
     $condition = array();
@@ -37,20 +47,23 @@ class Contact extends Model
     // create condition.
     foreach ($array as $key => $value)
     {
-      switch ($key)
-      {
-        // like.
+      if (($value === null) || ($value === "")) {
+        continue;
+      }
+
+      switch ($key) {
+          // like.
         case ParamConst::PARAM_FULLNAME:
         case ParamConst::PARAM_EMAIL:
-          $condition[] = [$key, 'LIKE', '%' + $value + '%'];
+          $condition[] = [$key, 'LIKE', '%' . $value . '%'];
           break;
 
-        // equal. 
+          // equal. 
         case ParamConst::PARAM_GENDER:
           $condition[] = [$key, '=', $value];
           break;
 
-        // between.
+          // between.
         case ParamConst::PARAM_FROM:
         case ParamConst::PARAM_TO:
           $cond = [$key => $value];
@@ -58,7 +71,7 @@ class Contact extends Model
           break;
 
         default:
-          Log::warning('At '+ __FUNCTION__ + ', Invalid Key : ' + $key);
+          Log::warning('At ' + __FUNCTION__ + ', Invalid Key : ' + $key);
           break;
       }
     }
@@ -67,31 +80,25 @@ class Contact extends Model
     $isEmptyCondition = empty($condition);
     $isEmptyConditionCreatedAt = empty($condition_created_at);
 
-    if ($isEmptyCondition && $isEmptyConditionCreatedAt)
-    {
+    if ($isEmptyCondition && $isEmptyConditionCreatedAt) {
       return self::getContacts();
     }
-    
-    $contacts = null;
-    if (!$isEmptyConditionCreatedAt)
-    {
+
+    $contacts = [];
+    if (!$isEmptyConditionCreatedAt) {
       $from = $condition_created_at[ParamConst::PARAM_FROM] ?? Carbon::minValue();
       $to = $condition_created_at[ParamConst::PARAM_TO] ?? Carbon::maxValue();
       $contacts = self::whereBetween(ParamConst::PARAM_CREATEDAT, [$from, $to])->get();
     }
 
-    if (!$isEmptyCondition)
-    {
-      if (isNull($contacts))
-      {
-        $contacts = self::where($condition)->get();
-      }
-      else {
-        $contacts = $contacts::where($condition)->get();
+    if (!$isEmptyCondition) {
+      if (isEmpty($contacts)) {
+        $contacts = self::where($condition)->Paginate(self::PAGINATE_NUM);
+      } else {
+        $contacts = $contacts::where($condition)->Paginate(self::PAGINATE_NUM);
       }
     }
 
-    assert(!isNull($contacts));
-    return $contacts->Paginate(self::PAGINATE_NUM);
+    return $contacts;
   }
 }

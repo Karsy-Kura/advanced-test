@@ -14,21 +14,25 @@ class ContactController extends Controller
   // input page.
   public function index ()
   {
-    return view(ViewConst::VIEW_CONTACT);
+    $contact = new Contact();
+    $param = [
+      'contact' => $contact
+    ];
+    return view(ViewConst::VIEW_CONTACT,  $param);
   }
 
   // modify input info.
   public function modify(Request $request)
   {
     $contact = $this->getRequestAll($request);
-    return view(ViewConst::VIEW_CONTACT, $contact);
+    return view(ViewConst::VIEW_CONTACT, ['contact' => $contact]);
   }
 
   // confirm input info.
   public function confirm(Request $request)
   {
     $contact = $this->getRequestAll($request);
-    return view(ViewConst::VIEW_CONFIRM, $contact);
+    return view(ViewConst::VIEW_CONFIRM, ['contact' => $contact]);
   }
 
   // create contact to contacts table.
@@ -48,22 +52,28 @@ class ContactController extends Controller
   // contacts management page.
   public function manage()
   {
-    $contacts = Contact::Paginate(5);
-    return view(ViewConst::VIEW_MANAGEMENTS, $contacts);
+    $contacts = Contact::getContacts();
+    $param = [
+      'contacts' => $contacts,
+    ];
+    return view(ViewConst::VIEW_MANAGEMENT, $param);
   }
   
   // search contacts.
   public function search(Request $request)
   {
-    $condition = $this->getRequestAll($request);
+    $condition = $this->getRequestQuery($request);
     $contacts = Contact::getContactsByCondition($condition);
-    return view(ViewConst::VIEW_MANAGEMENTS, [$condition, $contacts]);
+    $param = [
+      'contacts' => $contacts
+    ];
+    return view(ViewConst::VIEW_MANAGEMENT, $param);
   }
 
   // delete contact from table.
   public function delete(Request $request)
   {
     Contact::deleteAtId($this->getIdFromRequest(($request)));
-    return redirect(RouteConst::ROUTE_ROOT);
+    return redirect(RouteConst::ROUTE_CONTACT . "/" . RouteConst::ROUTE_MANAGEMENT);
   }
 }

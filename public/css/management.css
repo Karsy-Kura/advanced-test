@@ -1,0 +1,68 @@
+/* all */
+.content-wrap {
+  width: 90%;
+  margin: 0 5%;
+}
+
+/* search condition */
+.search-cond {
+  border: 1px solid black;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.search-cond__elem-wrap {
+  display: flex;
+  flex-direction: row;
+}
+.search-cond__elem-block1 {
+  width: 40%;
+  margin-left: 30px;
+  margin-right: 0;
+}
+
+.search-cond__elem-block1 input,
+.search-cond__elem-block1 div {
+  width: 65%;
+}
+
+.search-cond__elem-block2 {
+  width: 80%;
+  margin: 20px 0 20px 30px;
+}
+
+.search-cond__elem-block2 input {
+  width: 32.5%;
+}
+
+.search-cond__button-wrap {
+  text-align: center;
+}
+
+/* contacts table */
+.contacts {
+  margin: 20px 0;
+}
+
+.contacts-list {
+  text-align: left;
+  width: 100%;
+  margin: 20px 10px;
+  font-size: 24px;
+}
+.contacts-list__delete {
+  width: 70px;
+}
+
+tr {
+  height: 50px;
+}
+tr>th,td {
+  padding-left: 10px;
+}
+th, td {
+  padding-top: 10px;
+}
+th {
+  border-bottom: 2px solid black;
+}

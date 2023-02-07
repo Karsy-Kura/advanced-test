@@ -1,0 +1,98 @@
+/* all */
+* {
+  line-height: 1.6;
+}
+
+.wd-30 {
+  width: 30%;
+}
+.wd-15 {
+  width: 15%;
+}
+.wd-05 {
+  width: 5%;
+}
+.mg-auto {
+  margin: auto;
+}
+
+/* header */
+.common-header {
+  text-align: center;
+}
+
+.common-header__title {
+  font-size: 32px;
+  margin: 16px 0;
+}
+
+/* content */
+.common-content {
+  margin: auto;
+  width: 100vw;
+}
+
+.common-form-elem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.common-label,
+.common-label-required {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding: 5px 0;
+}
+
+.common-label-required::after{
+  content: '*';
+  color: red;
+}
+
+.common-input {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  font-size: 20px;
+  width: 100%;
+  appearance: none;
+}
+
+
+/* button */
+div.common-button {
+  margin: 10px 0;
+}
+button.common-button {
+  background-color: black;
+  color: white;
+  padding: 8px 0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+a.common-button {
+  display: block;
+  text-decoration: underline;
+  text-decoration-color: black;
+  margin-top: 5px;
+}
+
+/* radio button */
+.common-radio {
+  display: inline-block;
+}
+.common-radio input[type="radio"] {
+  width: 36px;
+  height: 36px;
+  accent-color: black;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.common-radio label {
+  padding-left: 5px;
+  font-size: 18x;
+  line-height: 36px;
+}
