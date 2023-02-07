@@ -16,12 +16,13 @@ class ContactFactory extends Factory
   {
     return [
       //
-      ParamConst::PARAM_FULLNAME => $this->faker->name,
+      ParamConst::PARAM_FAMILYNAME => $this->faker->lastName(),
+      ParamConst::PARAM_FIRSTNAME => $this->faker->firstName(),
       ParamConst::PARAM_GENDER => $this->faker->numberBetween(1,2),
       ParamConst::PARAM_EMAIL => $this->faker->email(),
       ParamConst::PARAM_POSTCODE => substr_replace($this->faker->postcode(), '-', 3 , 0),
       ParamConst::PARAM_ADDRESS => substr($this->faker->address(), 8),
-      ParamConst::PARAM_OPINION => $this->faker->text(120),
+      ParamConst::PARAM_OPINION => $this->faker->realtext(120),
     ];
   }
 }

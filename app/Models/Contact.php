@@ -17,7 +17,26 @@ class Contact extends Model
 
   protected $guarded = [ParamConst::PARAM_ID];
 
+  protected $append = ['fullname'];
+
   const PAGINATE_NUM = 10;
+
+  public function getFullNameAttribute()
+  {
+    return $this->familyname . $this->firstname;
+  }
+
+  public function getCurrentPageMin()
+  {
+    $num = ($this->currentPage() - 1) * self::PAGINATE_NUM + 1;
+    return $num;
+  }
+
+  public function getCurrentPageMax()
+  {
+    $num = $this->currentPage() * self::PAGINATE_NUM;
+    return $num;
+  }
 
   public static function getContacts()
   {

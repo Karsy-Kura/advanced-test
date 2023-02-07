@@ -64,7 +64,8 @@
 
 /* button */
 div.common-button {
-  margin: 10px 0;
+  margin: 20px 0;
+  align-items: center;
 }
 button.common-button {
   background-color: black;
@@ -73,11 +74,16 @@ button.common-button {
   border-radius: 5px;
   font-size: 16px;
 }
-a.common-button {
+button.common-button__back {
+  border-style: none;
+  background-color: transparent;
   display: block;
+  margin: auto;
+  color: black;
+  padding: 8px 0;
+  font-size: 16px;
   text-decoration: underline;
   text-decoration-color: black;
-  margin-top: 5px;
 }
 
 /* radio button */

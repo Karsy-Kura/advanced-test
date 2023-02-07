@@ -36,7 +36,7 @@ Route::group([RouteConst::ROUTE_PREFIX => RouteConst::ROUTE_CONTACT], function (
     RouteConst::ROUTE_CREATE,
     [ContactController::class, ControllerConst::CTRL_FUNC_CREATE]
   );
-  Route::post(
+  Route::get(
     RouteConst::ROUTE_CLOSE,
     [ContactController::class, ControllerConst::CTRL_FUNC_CLOSE]
   );

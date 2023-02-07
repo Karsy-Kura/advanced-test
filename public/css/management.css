@@ -39,9 +39,22 @@
   text-align: center;
 }
 
+.search-cond__button-reset {
+  display: block;
+}
+
 /* contacts table */
 .contacts {
   margin: 20px 0;
+}
+
+.contacts__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contacts__header__pagination {
+  display: inline-block;
 }
 
 .contacts-list {

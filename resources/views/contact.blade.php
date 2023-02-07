@@ -21,11 +21,11 @@
         </div>
         <div class="contact__form-elem__right">
           <div class="contact__form-elem__has-example-div2">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_FULLNAME}}" class="common-input" value="{{$contact->fullname}}">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_FAMILYNAME}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_FAMILYNAME]}}" @endif>
             <p class="example-text">例）山田</p>
           </div>
           <div class="contact__form-elem__has-example-div2">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_FULLNAME}}" class="common-input" value="{{$contact->fullname}}">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_FIRSTNAME}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_FIRSTNAME]}}" @endif>
             <p class="example-text">例）太郎</p>
           </div>
         </div>
@@ -39,19 +39,11 @@
         </div>
         <div class="contact__form-elem__right">
           <div class="common-radio">
-            <input type="radio" name="{{\App\Consts\ParamConst::PARAM_GENDER}}" value=1 
-              @if($contact->gender != 2)
-              checked
-              @endif
-            >
+            <input type="radio" name="{{\App\Consts\ParamConst::PARAM_GENDER}}" value=1 @if($contact[\App\Consts\ParamConst::PARAM_GENDER] !=2) checked @endif>
             <label>男性</label>
           </div>
           <div class="common-radio">
-            <input type="radio" name="{{\App\Consts\ParamConst::PARAM_GENDER}}" value=2
-              @if($contact->gender == 2)
-              checked
-              @endif
-            >
+            <input type="radio" name="{{\App\Consts\ParamConst::PARAM_GENDER}}" value=2 @if($contact[\App\Consts\ParamConst::PARAM_GENDER]==2) checked @endif>
             <label>女性</label>
           </div>
         </div>
@@ -65,7 +57,7 @@
         </div>
         <div class="contact__form-elem__right">
           <div class="contact__form-elem__has-example">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_EMAIL}}" class="common-input">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_EMAIL}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_EMAIL]}}" @endif>
             <p class="example-text">例）test@example.com</p>
           </div>
         </div>
@@ -73,14 +65,14 @@
       <!-- 郵便番号 -->
       <div class="common-form-elem">
         <div class="contact__form-elem__left">
-          <label for="{{\App\Consts\ParamConst::PARAM_POSTCODE}}" class="common-label-required">
+          <label for="{{\App\Consts\ParamConst::PARAM_POSTCODE}}" class="common-label-required" >
             郵便番号
           </label>
         </div>
         <div class="contact__form-elem__right">
           <!-- TODO: 郵便マーク -->
           <div class="contact__form-elem__has-example">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_POSTCODE}}" class="common-input">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_POSTCODE}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_POSTCODE]}}" @endif>
             <p class="example-text">例）123-4567</p>
           </div>
         </div>
@@ -94,7 +86,7 @@
         </div>
         <div class="contact__form-elem__right">
           <div class="contact__form-elem__has-example">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_ADDRESS}}" class="common-input">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_ADDRESS}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_ADDRESS]}}" @endif>
             <p class="example-text">例）東京都渋谷区千駄ヶ谷1-2-3</p>
           </div>
         </div>
@@ -108,7 +100,7 @@
         </div>
         <div class="contact__form-elem__right">
           <div class="contact__form-elem__has-example">
-            <input type="text" name="{{\App\Consts\ParamConst::PARAM_BUILDINGNAME}}" class="common-input">
+            <input type="text" name="{{\App\Consts\ParamConst::PARAM_BUILDINGNAME}}" class="common-input" @if ($contact!=null) value="{{$contact[\App\Consts\ParamConst::PARAM_BUILDINGNAME]}}" @endif>
             <p class="example-text">例）千駄ヶ谷マンション101</p>
           </div>
         </div>
@@ -121,7 +113,7 @@
           </label>
         </div>
         <div class="contact__form-elem__right">
-          <textarea class="common-input contact__form__opinion" name="{{\App\Consts\ParamConst::PARAM_OPINION}}" rows="5"></textarea>
+          <textarea class="common-input contact__form__opinion" name="{{\App\Consts\ParamConst::PARAM_OPINION}}" rows="5" >@if($contact!=null){{$contact[\App\Consts\ParamConst::PARAM_OPINION]}}@endif</textarea>
         </div>
       </div>
       <!-- ボタン -->

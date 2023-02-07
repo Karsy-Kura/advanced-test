@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Consts\RouteConst;
 use Illuminate\Http\Request;
 use App\Consts\ViewConst;
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 
 class ContactController extends Controller
@@ -22,25 +23,29 @@ class ContactController extends Controller
   }
 
   // modify input info.
-  public function modify(Request $request)
+  public function modify(ContactRequest $request)
   {
     $contact = $this->getRequestAll($request);
     return view(ViewConst::VIEW_CONTACT, ['contact' => $contact]);
   }
 
   // confirm input info.
-  public function confirm(Request $request)
+  public function confirm(ContactRequest $request)
   {
     $contact = $this->getRequestAll($request);
     return view(ViewConst::VIEW_CONFIRM, ['contact' => $contact]);
   }
 
   // create contact to contacts table.
-  public function create(Request $request)
+  public function create(ContactRequest $request)
   {
     $contact = $this->getRequestAll($request);
+    if ($request->input('back') == 'back'){
+      return $this->modify($request);
+    }
+
     Contact::createNewContact($contact);
-    return redirect(RouteConst::ROUTE_CLOSE);
+    return redirect(RouteConst::ROUTE_CONTACT . "/" . RouteConst::ROUTE_CLOSE);
   }
 
   // show thanks page.

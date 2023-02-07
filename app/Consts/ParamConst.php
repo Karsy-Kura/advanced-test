@@ -20,6 +20,10 @@ class ParamConst
   
   public const PARAM_FULLNAME = 'fullname';
 
+  public const PARAM_FAMILYNAME = 'familyname';
+
+  public const PARAM_FIRSTNAME = 'firstname';
+
   public const PARAM_GENDER = 'gender';
 
   public const PARAM_EMAIL = 'email';

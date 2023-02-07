@@ -21,11 +21,13 @@
         </div>
         <div class="contact__form-elem__right">
           <span class="common-confirm">
-            {{$contact[\App\Consts\ParamConst::PARAM_FULLNAME]}}
+            {{$contact[\App\Consts\ParamConst::PARAM_FAMILYNAME]}}
           </span>
           <span class="common-confirm">
-            {{$contact[\App\Consts\ParamConst::PARAM_FULLNAME]}}
+            {{$contact[\App\Consts\ParamConst::PARAM_FIRSTNAME]}}
           </span>
+          <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_FAMILYNAME}}" value="{{$contact[\App\Consts\ParamConst::PARAM_FAMILYNAME]}}">
+          <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_FIRSTNAME}}" value="{{$contact[\App\Consts\ParamConst::PARAM_FIRSTNAME]}}">
         </div>
       </div>
       <!-- 性別 -->
@@ -38,12 +40,13 @@
         <div class="contact__form-elem__right">
           <span class="common-confirm">
             @if ($contact[\App\Consts\ParamConst::PARAM_GENDER] == 1)
-              男性
+            男性
             @elseif ($contact[\App\Consts\ParamConst::PARAM_GENDER] == 2)
-              女性
+            女性
             @endif
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_GENDER}}" value="{{$contact[\App\Consts\ParamConst::PARAM_GENDER]}}">
       </div>
       <!-- メールアドレス -->
       <div class="common-form-elem">
@@ -57,6 +60,7 @@
             {{$contact[\App\Consts\ParamConst::PARAM_EMAIL]}}
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_EMAIL}}" value="{{$contact[\App\Consts\ParamConst::PARAM_EMAIL]}}">
       </div>
       <!-- 郵便番号 -->
       <div class="common-form-elem">
@@ -70,6 +74,7 @@
             {{$contact[\App\Consts\ParamConst::PARAM_EMAIL]}}
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_POSTCODE}}" value="{{$contact[\App\Consts\ParamConst::PARAM_POSTCODE]}}">
       </div>
       <!-- 住所 -->
       <div class="common-form-elem">
@@ -83,6 +88,7 @@
             {{$contact[\App\Consts\ParamConst::PARAM_ADDRESS]}}
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_ADDRESS}}" value="{{$contact[\App\Consts\ParamConst::PARAM_ADDRESS]}}">
       </div>
       <!-- 建物名 -->
       <div class="common-form-elem">
@@ -96,6 +102,7 @@
             {{$contact[\App\Consts\ParamConst::PARAM_BUILDINGNAME]}}
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_BUILDINGNAME}}" value="{{$contact[\App\Consts\ParamConst::PARAM_BUILDINGNAME]}}">
       </div>
       <!-- ご意見 -->
       <div class="common-form-elem">
@@ -109,13 +116,12 @@
             {{$contact[\App\Consts\ParamConst::PARAM_OPINION]}}
           </span>
         </div>
+        <input type="hidden" name="{{\App\Consts\ParamConst::PARAM_OPINION}}" value="{{$contact[\App\Consts\ParamConst::PARAM_OPINION]}}">
       </div>
       <!-- ボタン -->
       <div class="common-button">
         <button class="common-button wd-15">送信</button>
-        <form action="/modify" method="post">
-          <a class="common-button wd-15">修正する</a>
-        </form>
+        <button class="common-button__back" name="back" value="back">修正する</button>
       </div>
     </form>
   </div>

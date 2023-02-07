@@ -50,7 +50,7 @@
       </div>
       <div class="common-button search-cond__button-wrap">
         <button class="common-button wd-15">検索</button>
-        <a href="/contact/management" class="common-button">リセット</a>
+        <a href="/contact/management" class="common-button search-cond__button-reset">リセット</a>
       </div>
     </form>
   </div>
@@ -60,10 +60,12 @@
     <!-- 件数表示 -->
     <div class="contacts__header">
       <span class="contacts__header__num">
-        全{{\App\Models\Contact::all()->count()}}件中 &emsp; - 件
+        全{{\App\Models\Contact::all()->count()}}件中 {{($contacts->currentPage()-1) * $contacts->perPage()+1}}-{{$contacts->currentPage() * $contacts->perPage()}}件
       </span>
-
       <!-- TODO: paginate表示 -->
+      <span class="contacts__header__pagination">
+        {{$contacts->links('vendor.pagination.semantic-ui')}}
+      </span>
     </div>
 
     <!-- 一覧 -->
@@ -83,13 +85,13 @@
         <td>{{$contact[\App\Consts\ParamConst::PARAM_FULLNAME]}}</td>
         <td>
           @if($contact[\App\Consts\ParamConst::PARAM_GENDER] == 1)
-            男性
+          男性
           @elseif($contact[\App\Consts\ParamConst::PARAM_GENDER] == 2)
-            女性
+          女性
           @endif
         </td>
         <td>{{$contact[\App\Consts\ParamConst::PARAM_EMAIL]}}</td>
-        <td>{{$contact[\App\Consts\ParamConst::PARAM_OPINION]}}</td>
+        <td><p class="contacts-list__opinion">{{$contact[\App\Consts\ParamConst::PARAM_OPINION]}}</p></td>
         <td>
           <form action="/contact/management/delete?id={{$contact[\App\Consts\ParamConst::PARAM_ID]}}" method="post">
             @csrf

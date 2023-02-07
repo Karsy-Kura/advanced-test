@@ -16,7 +16,8 @@ class CreateContactsTable extends Migration
   {
     Schema::create('contacts', function (Blueprint $table) {
       $table->id();
-      $table->string(ParamConst::PARAM_FULLNAME, 255);
+      $table->string(ParamConst::PARAM_FAMILYNAME, 255);
+      $table->string(ParamConst::PARAM_FIRSTNAME, 255);
       $table->tinyInteger(ParamConst::PARAM_GENDER, false, true);
       $table->string(ParamConst::PARAM_EMAIL, 255);
       $table->string(ParamConst::PARAM_POSTCODE, 8);
