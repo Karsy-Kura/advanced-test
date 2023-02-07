@@ -44,6 +44,11 @@
   color: rgba(0, 0, 0, 0.5);
   font-size: 80%;
 }
+.error-message {
+  color: red;
+  width: 96%;
+  margin: 0 2.0%;
+}
 
 .contact__form__opinion {
   width: 96%;

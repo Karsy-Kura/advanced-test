@@ -37,4 +37,10 @@ class ContactRequest extends FormRequest
       ParamConst::PARAM_OPINION => 'required|string|max:120',
     ];
   }
+
+  public function prepareForValidation()
+  {
+    // 全角->半角数字.
+    $this['postcode'] = mb_convert_kana($this->postcode, 'n');
+  }
 }

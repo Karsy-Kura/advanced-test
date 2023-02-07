@@ -25,6 +25,8 @@ class ContactController extends Controller
   // modify input info.
   public function modify(ContactRequest $request)
   {
+    $request->validate();
+
     $contact = $this->getRequestAll($request);
     return view(ViewConst::VIEW_CONTACT, ['contact' => $contact]);
   }
